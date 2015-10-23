@@ -22,7 +22,7 @@ namespace AzureBlobList
       var blobClient = storageAccount.CreateCloudBlobClient();
 
       // Retrieve reference to a previously created container.
-      var container = blobClient.GetContainerReference("vhds");
+      var container = blobClient.GetContainerReference(ConfigurationManager.AppSettings["ContainerReference"]);
 
       blobDownloader = new BlobDownloader(container);
 
