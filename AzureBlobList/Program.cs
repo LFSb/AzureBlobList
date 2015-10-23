@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 
@@ -11,7 +7,7 @@ namespace AzureBlobList
 {
   class Program
   {
-    private static BlobDownloader blobDownloader;
+    private static BlobDownloader _blobDownloader;
 
     static void Main(string[] args)
     {
@@ -24,7 +20,7 @@ namespace AzureBlobList
       // Retrieve reference to a previously created container.
       var container = blobClient.GetContainerReference(ConfigurationManager.AppSettings["ContainerReference"]);
 
-      blobDownloader = new BlobDownloader(container);
+      _blobDownloader = new BlobDownloader(container);
 
       // Loop over items within the container and output the length and URI.
       foreach (var item in container.ListBlobs(null, false))
@@ -72,7 +68,7 @@ namespace AzureBlobList
       {
         case "y":
           {
-            blobDownloader.SaveBlockBlob(container, pageBlob);
+            _blobDownloader.SaveBlockBlob(container, pageBlob);
           } break;
         default:
           {
@@ -97,7 +93,7 @@ namespace AzureBlobList
       {
         case "y":
           {
-            blobDownloader.SavePageBlob(container, pageBlob);
+            _blobDownloader.SavePageBlob(container, pageBlob);
           } break;
         default:
           {
