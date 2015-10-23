@@ -1,0 +1,6 @@
+*.suo
+app.config
+*.csproj.user
+AzureBlobList/bin/*
+AzureBlobList/obj*
+packages
